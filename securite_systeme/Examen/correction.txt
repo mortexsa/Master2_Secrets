@@ -1,0 +1,99 @@
+1/ sécurité physique :casser le disque dur.
+2/Non, ce n'est pas une authentification forte parceque il faut satisfaire au moins 2 conditions parmi les 3
+ce que je connais, ce que je possède et ce que j'incarne.
+ici il y a seuelement code pin (ce que je connais)
+à partir de slide 14/70 cours1 sec unix
+3/
+auth required /path/pam_nocontact.so
+auth required /path/pam_pinlock.so
+account requisite /path/pam_ethylo.so
+
+4/ définition compte captif:
+slide 50/70 cours 1 sécurité linux
+
+compte captif: arret 
+++
+à quoi sert ?
+
+MOUS : CELUI-CI SERT A ARRETER LE SYSTEME
+
+
+5/Systeme bastion dans quel cours ??? def !!
+bluez: pas besoin du bleutooth dans le serveur
+sox:pas besoin du son sur un serveur
+fontconfig:Fontconfig est une bibliothèque de configuration et de personnalisation de police indépendante du système X Window.
+kbd: linux console font (interface graphique du console linux)
+xorg:pas besoin d'une interface graphique sur un serveur
+gnuchess: le serveur n'a pas besoin du jeu d'échecs
+lvm2: gestionnare de volumes logiques linux
+gvfs:
+
+Partie : Don't mess with my man
+1/ le reultat obtenu 
+
+LE PROGRAMME A ACCEDER A LA VERSION DE LA DISTRIBUTION LINUX ICI 6.0.6 ALORS QUE CELLE-CI N'EST PAS DANS /VAR/DOC ON A DONC UNE FAILLE DE TYPE DIRECTORY TRAVERSAL
+
+2/ cloisonnement : chroot jail
+3/ dessin
+expliquez chaque noeud de l'rbre que vous donnerez.
+
+4/ le resultat obtenu : 
+
+MOUS : ON OBSERVE ICI UN SEGMENTATION FAULT ET L'ADRESSE EST 41414141 CE QUI CORRESPOND A LA VALEUR ASCI DE "A". ON EN DEDUIT QUE CE PROGRAMME EST VULNERABLES A UNE FAILLE DE TYPE BUFFEROVERFLOW. ET LA FIN DE LA CHAINE DE CARACTERE "AAAA" A ECRASER L'ADRESSE DE RETOUR EIP
+
+dessin sur cahier
+
+6/les 2 conditions nécessaires sont:
+pas de ASLR sur la libc si la pile est non exécutable
+pas de canary
+
+7/
+décrire type de payload ??? donnes mois une phrase :pppppp
+
+MOUS : ON ECRIT UN PROGRAMME EN C (OUVERTURE D'UN TERMINAL DE COMMANDE, OUVERTURE D'UN PORT, LECTURE DE FICHIERS COMME PASSWD) PUIS ON LE CONVERTIT EN ASSEMBLEUR ET ENSUITE EN HEXA. AVEC LA FONCTION PRINT ON L'AFFICHE EN ASCI SUIVI D'UNE FONCTION DE PADDING ET ENFIN L'ADRESSE EIP CORRESPONDANT AU DÉBUT DE NOTRE PROGRAMME. UN OUTILS QUI AUTOMATISE CELA METASPLOIT.
+
+à la main d'une part ???? exécuter du code shell
+avec un outil tiers ???? metasploit
+
+8/ ???????? cours ? réponse :p
+
+MOUS : On peut simplement XORer la chaîne de caractères ! DE CETTE FACON L'IDS NE BLOQUERA NOTRE TENTATIVE D'EXPLOITATION DE LA VULNERABILITÉ
+On commence ENSUITE le code par déXORer
+
+2ème partie: prévention et confinement des attaques
+1/ def et explication meme slide 141/162  cours vulnérabilités
+2/  -etant donnée que les adresses sont fixes dans la libc alors on peut
+ choisir une fonction précise de la libc a une adresse qu'on connait et qu'on souhaite exécuter.
+    - ASLR : la randomisation des adresses
+3/-rsyslogd ou rsyslog
+  - Description des règles:
+accès aux fichiers : là ou il y a rw
+exécution de processus : capability
+4/ ???? je ne sais pas le faire
+
+MOUS :
+#INCLUDE <TUNABLES/GLOBLAS>
+
+USR/SBIN/APACHE2 {
+#INCLUDE <ABSTRACTIONS/BASE>
+#INCLUDE <ABSTRACTIONS/NAMESERVICES>
+
+
+CAPABILITY SYS_TTY_CONFIG,
+CAPABILITY SETUID,
+CAPABILITY SETGID,
+
+/VAR/WWW/ R,
+/VAR/WWW/** R,
+/ETC/APACHE2/ R,
+/ETC/APACHE2/** R,
+/VAR/LOG/APACHE2/** RW,
+/USR/LIB/APACHE/ IXR,
+}
+
+
+Question Bonus :p hhhhhhhhhhhhhhh fais le :D
+
+POUR : NX ET ASLR NE PROTEGE PAS D'UNE FAILLE DE TYPE DIRECTORY TRAVERSAL
+APPARMOR CORRIGE CELA
+

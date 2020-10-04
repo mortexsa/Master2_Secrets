@@ -1,0 +1,27 @@
+.flac = format audio sans perte
+CTF = Capture The Flag : Flag -> chaine de caractere qui ressemble à un mot de passe ou une clé  
+
+/////////////////////
+
+1ere cmd : file nom_audio
+
+-> obtenir une version analysable du flux audio : format binaire RAW
+		SOX, inplayer
+
+2eme cmd : sox nom_fichier -t raw -c 2 -b 16 test.raw -> creer le fichier.raw
+
+3eme cmd : ls -l fichier.raw -> affiche le nombre ...
+
+4eme cmd : verifier avec echo $((1508833*4))
+
+5eme cmd :hexedit fichier.raw
+
+///////////////////////
+
+ecriture classique : Big Indians -> plus gros chiffres a gauche 
+processeur : Little Indians -> unités a gauche
+
+octet en base 256
+
+a602 en little indians converti en big indians -> octet de poids faible a6 et octet de poids fort 02 donc -> dec(02)*256 + dec(a6)*1
+-> 2x256 + 166 = 512 + 166 = 678

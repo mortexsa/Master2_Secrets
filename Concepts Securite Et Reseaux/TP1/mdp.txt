@@ -1,0 +1,4 @@
+login : user / password : resuresu
+login root / password : toortoor
+
+10.0.0.0/24 -> 10.0.0.1

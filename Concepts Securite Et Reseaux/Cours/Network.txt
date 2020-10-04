@@ -1,0 +1,32 @@
++ IP (protocol) doesn't assure the confidentiality of data
+
++ On an isolated network, a gateway may help to detect any malware by analysing sent requests to the gateway, seen that malwares will try to connect to external networks so they will be directed to gateway.
+
++ Adaptative routing protocol (dynamic) ex: RIP, OSPF
+
++ ICMP : we shouldn't filter all ICMP requests even for security reasons, cause an error message (such as returning to a sender an error if a packet couldn't pass through a router for any reason) won't be sent because all ICMP requests are filtered.
+
++ ping -c 5 xx.xx.xx.xx (limit number of ICMP requests number ,5 requests)
+
++ ping -s 2000 (specify size of a ping ICMP request 2000KB in this case)
+
++ ARP poisoning
+	-Configure 3 vm.
+	- we suppose :
+		vm1 ip@ : 10.0.0.1/24 , mac@ : aa:aa:aa:aa:aa:aa
+		vm2 ip@ : 10.0.0.2/24 , mac@ : bb:bb:bb:bb:bb:bb
+		vm3 ip@ : 10.0.0.3/24 , mac@ : cc:cc:cc:cc:cc:cc
+		
+		(where vm3 is the attacker)
+
+	- 1st vm ping in permenant vm2
+	- if vm3 tcpdump the network, he'll not be able to listen to anything (except the arp request)
+	- attacker will get vm2 ip@
+	- attacker will send arp requests on the network pretending to be vm2 combining his own mac@ and vm2's ip@ (vm3Mac@ , vm2IP@)
+	- arp table will be updated for everyone especially for vm1
+	- vm1 will keep pining on vm2'ip@ but now they will be redirected to the attacker machine (vm3)
+	- vm3(the attacker) can now listen to what vm1 was sending to vm2.
+
+!! Tool to send arp requests on the network(what the attacker used) : scapy
+
+srp(Ether(dst="cc:cc:cc:cc:cc:cc")/ARP(pdst="10.0.0.2/24"))

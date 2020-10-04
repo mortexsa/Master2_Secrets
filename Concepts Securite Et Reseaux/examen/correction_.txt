@@ -1,0 +1,13 @@
+1) ARP est un protocole sans état. Un attaquant peut envoyer des fausse réponse ARP sur une station pour forcer la mise à jour des caches des stations. -> le paquet ARP : @IP_victime, @MAC_pirate
+4 solutions : 
+	-> Table arp statique en figeant l'association IP/MAC
+	-> Gratuitous ARP : N'autorise les réponse ARP uniquement si une requete ARP a été enregistrée précédemment. Seules les réponses en rapport avec la requetes seront autorisées à transiter.
+	-> IDS : Analyse d'un grand nombre de paquets ARP-reply envoyé lève une alerte aux équipes de sécurité.
+	-> DAI : Pour chaque réponse ARP envoyé depuis un port qui n'est pas de confiance, comparer les données qu'elle contient à une base de données de confiance pré-enregistrée dans le réseau et dropper les paquets arp-reply contenant de fausses informations.
+		
+
+2) 
+	2.1) Taille PCI : dans 99% des cas la taille est de 20 octets. Si le champs options est utilisé la taille maximum est alors de 60 octets.
+	2.2) 
+
+

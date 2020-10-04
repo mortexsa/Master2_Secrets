@@ -1,0 +1,45 @@
+EXAMEN 
+Q1/
+*/1 ARP spoofing:usurper l'identité de passerelle par défaut avec adresse mac.
+iproute pour savoir passerelle par défaut.
+dans le cas normal on envoit les données on passe par la passerelle en envoyant l'@ mac src et 
+l'@ mac dest du passerelle .
+mais si un attaquant veut faire ce type d'attaque, il dit que c 'est lui la paserelle 
+qd on a lancé ARP request ou il donne desarp réponses gratuites (sans lui demander il dit c moi le paserelle c moi ..)
+et il sera lui l'intermidiaire comme ça.
+*/ soit avec tcdump ou ids (intrusion detection system)/reponses gratuites sans demande
+*/ ARP static on fait pas des demandes arp (on fait pas arp request)
+on entre seulement aux sites HTTPS 
+utiliser VPN tunnel chiffré
+ Q2///
+TTL: time to live : durée de vie de paquet nbr de saut combien de routeurs a traversé.
+non car les routeurs  distribuent les paquets de façons optimales.
+
+Q3//le champ IHL dans l'entete datagramme ip (ip header) indique la taille de 
+
+l'entete en nombre de mot de 32 bits .
+
+champ de taile 4 bits maximal donc 2 puiss 4 -1  =15 mot de 32 bits.
+15*4=60 octets.
+min 20 et max 60
+quelle est la taille de user data autre ex
+(2 puiss 16 -1 )-20 ip header.. en octets
+16 car champ sur 2 octet -1 
+20: taille minimal de l entete ip
+****************************************************** 
+Q autre ex
+Q/ Paquet ICMP
+dans la réponse echo replay .. il y a des données aléatoires qui sont rajoutées pour atteindre une longueur minimalen.
+on remarque que dans ces données on distingue adm et pass on peut supposer qu il a copié ces 
+données à partir d'un buffer.
+
+Q udp/tcp
+
+arp spoofing faut n etre sur le meme réseau 
+ip spoofing n'importe quelle machine.
+UDP car on établie pas la connexion.
+car en tcp ..on envoie syn après le syn ack sera pas envoyé à moi car c mpas moi le bon source
+en syn ack normalement on reçoit un numéro de séquencement 
+mais psq je vais pas le recevoir psq je suis pas la bonne destination 
+donc je ne peux pas répondre par ack car je n'ai pas le numéro de séquencement pour répondre et établir la connexion.
+les conditions particulières

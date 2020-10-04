@@ -1,0 +1,83 @@
+fais moi copier coller de tp1 ce que t'as dit stp 
+
+
+l/'installation d'une ditribution minimal signifie l'installation des services et paquet strictement 
+nécessiares à l'utilisation prévu de la machine.
+-moins de service moins de risque.
+16 octets // strcpy c 'est la fonction qui permet de faire le débordement. psq là ou il y a buf 
+b/ldd les librairies dynamiques
+
+MOUS : COURS SECURITE UNIX SLIDE 59
+
+2/a/
+car on ne vérifie pas la longuer de argv et qu'on copie directement la valeur de argv dans le buffer via
+strcopy sans avoir vérifier la taille, et donc on risque de faire un débordement de mémoire.
+
+la taille c 'est 16 octets
+strcpy c 'est la fonction qui permet de faire le débordement psq c'est la taile de buffer.
+b/
+schéma de page 41/70 cours sec unix
+on envoie un certain nombre de caractère pour écraser le eip (l'adresse de retour).
+ 
+3/ a/La commande ldd permet de lister l'ensemble des bibliothèques partagées requises par un exécutable.(librairie dynamique)
+principe de la cage slide 45
+
+MOUS : GRACE A CE LISTING NOUS SAVONS LES BIBLIOTHEQUES DONT DEPEND NOTRE PROGRAMME. AVEC CES INFORMATIONS, ON PEUT DONC LES COPIER DANS NOTRE CAGE AFIN DE CONSTRUIRE UNE ARBORESCENCE SPECIFIQUE POUR QUE LE PROGRAMME FONCTIONNE
+
+b/slide 45 on fait passer un rep du systme pour la racine + 
+
+MOUS : le système de confinement est indépendant du binaire à confiner
+· même si le binaire est corrompu ou vulnérable, le système reste fiable
+· le mécanisme est réutilisable quelque soit le binaire à protéger
+· le binaire n’en a pas conscience, et ne change pas son comportement
+
+que faut il faire en plus 
+
+MOUS : EN PLUS UTILISER APPARMOR OU GRSECURITY
+
+
+examen 2009/2010 session rattrappage
+
+
+1/ Que signifié le sigle PAM ?
+En informatique, Pluggable Authentication Modules (modules d'authentification enfichables, en abrégé PAM).
+Quel aspect de la sécurité des systèmes  Unix est couvert par le PAM ?
+PAM se veut un mécanisme flexible d'authentification des utilisateurs (pas de réécriture lors des programmes tels que ftp, loginlors d'une évolution de etcd/shadow). Les programmes supportant PAM doivent pouvoir se lier dynamiquement à des modules chargés d'effectuer l'authentification. L'ordre d'attachement des modules et leurs configurations sont à la charge de l'administrateur système qui gère cela de façon centralisée. Chaque application PAM doit posséder un fichier de configuration dans le répertoire /etc/pam.d. Chacun de ces fichiers est composé de :
+	Type de module (authentification, gestion des utilisateurs, tâches à effectuer en début et fin de chaque session, mise à jour du jeton d'authentification de l'utilisateur)
+	Contrôle de réussite des modules
+	Chemin du module (/usr/lib/security)
+	Arguments optionnels.
+Les PAM constituent  un mécanisme modulaire .Pourquoi ?
+ PAM est constituée de modules. Ainsi, pour chaque type de service, vous pouvez définir le ou les modules de votre choix. Il existe quatre familles de modules :
+  modules auth : ils sont utilisés pour une identification classique (login et mot de passe). 
+  modules account : ils ont la charge de vérifier si l'identification est autorisée (expiration de compte, plage horaire de connexion). 
+  modules password : comme le nom l'indique, ils sont utilisés pour vérifier les mots de passe. 
+  modules session : ils sont utilisés à l'intérieur de la session de l'utilisateur (après l'identification). Ils permettent de contrôler par exemple l'accès aux répertoires home et aux boîtes aux lettres.
+Il est également possible de combiner les modules pour obtenir les effets de son choix avec les services de son choix. Chaque application utilisant PAM définit un service. Ainsi, le programme login utilise le service ... login, ftpd le service ftp, rlogin le service rlogin, etc.
+Sur un système protéger par les  PAM, 
+on trouve le fichier  /etc/pam.d/login .Que contient-il ???????????????
+2/a/
+car on ne vérifie pas la longuer de ragv et qu'on copie directement la valeur de argv dans le buffer via
+strcopy sans avoir vérifier la taille, et donc on risque de faire un débordement de mémoire.
+strncpy
+b/
+La stratégie de l'attaquant est alors de détourner le programme bugué en lui faisant exécuter des instructions qu'il a introduites dans le processus.
+exemple: voir tp
+c quoi la commande provoquant ce crash
+
+MOUS : C'EST FAUX CE QUE TA MIS DANS LA QUESTION AU DESSUS
+UN ATTAQUANT PROVOQUE LE DEBORDEMENT DU BUFFER EN ENTRANT COMME PARAMETRE AU PROGRAMME UNE TRES LONGUE CHAINE DE CARACTERE DE FACON A ECRASER LA VALEUR DE L'ADRESSE DE RETOUR EIP
+
+EXEMPLE DE LIGNE DE COMMANDE : ./NOM_PROGRAMME CECI_EST_UNE_TRES_LONGUE_CHAINE_DE_CARACTERE_AFIN_DE_PROVOQUER_UN_CRASH_BBBBBBBB
+
+3/a
+slide 45 cours1
+b/permet e savoir l'arborescence et la commande chrout qu'on va taper construire l'arbre et faire les commandes
+c/2 autres mesures pour minimiser :fin de la correction de tp1 : quelle seraient les conséquences d'une faille rsyslog
+
+MOUS : C'EST FAUX C'EST PAS RSYSLOG C'EST UTILISER APPARMOR OU GRSECURITY AFIN DE  RAJOUTER UN MECANISME DE CONFINEMENT. 
+
+TU PEUX DONNER LES EXEMPLES DU COURS SUR APPARMOR OU GRSECURITY
+
+
+

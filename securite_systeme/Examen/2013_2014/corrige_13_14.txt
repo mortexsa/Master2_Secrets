@@ -1,0 +1,33 @@
+Question de cour
+
+	1.
+		Si la sécurité physique du systeme est compromise, alors un attaquant n'aura aucune difficulté pour compromettre la securité applicative. Exemple un routeur/switch (sortie sur internet) si la sécurité physique est compromise, exemple débrancher tous les cables dessus. Alors celui-ci sera hors service quelque soit la securité applicative implémenté.
+
+	2.
+		Non car dans l'hypothèse ou un attaque arrive a casser le mot de passe de 16 caractère alors il arrivera a casser le mot de passe de 8 chiffre. une authentification dite forte doit aller voir wikipedia.
+
+	3.
+		
+
+
+
+Don't mess with my man
+
+	1.
+		faille directory traversor
+	2.	
+		chroot
+	3.
+		les chemin décrit (car less utilise ces bib), + /bin/mymen(affin d'exec le prog) +/bin/less(afin de pouvoir utilisé less) 
+	4.
+		bufferoverflow l'adresse de retour est équivalente a la valeur asci de AAA = 41414141
+	5. 	_fleche vers le bas
+		_fleche vers le haut
+		_cours slide 119/173 ou 57/125 	EIP () adresse de retour 
+						EBP ancienne valeur d'EBP
+					Les parametre vul, l'une des var local
+6pas de control taille + no canary
+7code assembleur 
+
+
+

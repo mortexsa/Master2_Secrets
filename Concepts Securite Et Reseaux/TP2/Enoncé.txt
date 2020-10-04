@@ -1,0 +1,5 @@
+1. Installer une VM openBSD
+2. Pare-Feu + Proxy HTTP Langage De Script(Python,Bash,Perl)
+3.Connection à Internet via le Proxy
+4.Configurer le Pare-Feu pour empecher le conturnement du proxy
+5.Redondance : CARP + Relay D
